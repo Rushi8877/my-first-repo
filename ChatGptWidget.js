@@ -12,7 +12,7 @@
         {
             "kind": "main",
             "tag": "com-rohitchouhan-sap-chatgptwidget",
-            "url": "https://cdn.jsdelivr.net/gh/SAP-Custom-Widget/ChatGptWidget@1.0.3/ChatGptWidget.js",
+            "url": "https://github.com/Rushi8877/my-first-repo/edit/featured/lesson/ChatGptWidget.js",
             "integrity": "",
             "ignoreIntegrity": true
         },
