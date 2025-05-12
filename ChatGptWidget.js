@@ -12,7 +12,7 @@
         {
             "kind": "main",
             "tag": "com-rushi-sap-chatgptwidget",
-            "url": "https://github.com/Rushi8877/my-first-repo/edit/featured/lesson/ChatGptWidget.js",
+            "url": "ChatGptWidget.js",
             "integrity": "",
             "ignoreIntegrity": true
         },
