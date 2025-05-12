@@ -19,7 +19,7 @@
         {
             "kind": "builder",
             "tag": "com-rushi-sap-chatgptwidget-builder",
-            "url": "https://cdn.jsdelivr.net/gh/SAP-Custom-Widget/ChatGptWidget@1.0.3/ChatGptWidget_Builder.js",
+            "url": "ChatGptWidget_Builder.js",
             "integrity": "",
             "ignoreIntegrity": true
         }
