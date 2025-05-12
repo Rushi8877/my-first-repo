@@ -1,24 +1,24 @@
 {
-    "id": "com.rohitchouhan.sap.chatgptwidget",
+    "id": "com.rushi.sap.chatgptwidget",
     "version": "1.0.3",
     "name": "ChatGPT Widget",
     "description": "ChatGPT Custom Widget for SAP Analytics Cloud, making applications more useful and effective.",
     "newInstancePrefix": "ChatGptWidget",
-    "vendor": "Rohit Chouhan",
+    "vendor": "Rushi",
     "eula": "",
     "license": "MIT",
     "icon": "https://raw.githubusercontent.com/SAP-Custom-Widget/ChatGptWidget/main/icon.png",
     "webcomponents": [
         {
             "kind": "main",
-            "tag": "com-rohitchouhan-sap-chatgptwidget",
+            "tag": "com-rushi-sap-chatgptwidget",
             "url": "https://github.com/Rushi8877/my-first-repo/edit/featured/lesson/ChatGptWidget.js",
             "integrity": "",
             "ignoreIntegrity": true
         },
         {
             "kind": "builder",
-            "tag": "com-rohitchouhan-sap-chatgptwidget-builder",
+            "tag": "com-rushi-sap-chatgptwidget-builder",
             "url": "https://cdn.jsdelivr.net/gh/SAP-Custom-Widget/ChatGptWidget@1.0.3/ChatGptWidget_Builder.js",
             "integrity": "",
             "ignoreIntegrity": true
