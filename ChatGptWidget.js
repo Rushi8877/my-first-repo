@@ -7,7 +7,7 @@
     "vendor": "Rushi",
     "eula": "",
     "license": "MIT",
-    "icon": "https://raw.githubusercontent.com/SAP-Custom-Widget/ChatGptWidget/main/icon.png",
+    "icon": "icon (1).png",
     "webcomponents": [
         {
             "kind": "main",
