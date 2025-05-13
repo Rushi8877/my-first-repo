@@ -35,21 +35,6 @@
         margin-bottom: 10px;
     }
 
-
-    input[type="color"] {
-	-webkit-appearance: none;
-	border: none;
-	width: 32px;
-	height: 32px;
-}
-input[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
-}
-input[type="color"]::-webkit-color-swatch {
-	border: none;
-}
-
-
     select {
         width: 100%;
         padding: 10px;
@@ -78,35 +63,34 @@ input[type="color"]::-webkit-color-swatch {
 <form id="form">
     <table>
         <tr>
-    <td>
-    <p>Api Key of ChatGPT</p>
-    <input id="builder_apiKey" type="text" placeholder="Enter Api Key of ChatGPT">
-    </td>
-    </tr>
-    <tr>
-    <td>
-    <p>Result Max Length</p>
-    <input id="builder_max_tokens" type="number" placeholder="Enter Result Max Length">
-    </td>
-    </tr>
-    
+            <td>
+                <p>API Key for ChatGPT</p>
+                <input id="builder_apiKey" type="text" placeholder="Enter API Key">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Result Max Length</p>
+                <input id="builder_maxTokens" type="number" placeholder="Enter Maximum Token Length">
+            </td>
+        </tr>
     </table>
     <input value="Update Settings" type="submit">
     <br>
     <p>Developed by <a target="_blank" href="https://linkedin.com/in/itsrohitchouhan">Rohit Chouhan</a></p>
 </form>
 `;
+
    class ChatGptWidgetBuilderPanel extends HTMLElement {
       constructor() {
          super();
-         this._shadowRoot = this.attachShadow({
-            mode: "open"
-         });
+         this._shadowRoot = this.attachShadow({ mode: "open" });
          this._shadowRoot.appendChild(template.content.cloneNode(true));
          this._shadowRoot
             .getElementById("form")
             .addEventListener("submit", this._submit.bind(this));
       }
+
       _submit(e) {
          e.preventDefault();
          this.dispatchEvent(
@@ -114,7 +98,7 @@ input[type="color"]::-webkit-color-swatch {
                detail: {
                   properties: {
                      apiKey: this.apiKey,
-                     max_tokens: this.max_tokens
+                     maxTokens: this.maxTokens  // Updated from max_tokens
                   },
                },
             })
@@ -128,15 +112,14 @@ input[type="color"]::-webkit-color-swatch {
          return this._shadowRoot.getElementById("builder_apiKey").value;
       }
 
-      set max_tokens(_max_tokens) {
-         this._shadowRoot.getElementById("builder_max_tokens").value = _max_tokens;
+      set maxTokens(_maxTokens) {
+         this._shadowRoot.getElementById("builder_maxTokens").value = _maxTokens;
       }
-      get max_tokens() {
-         return this._shadowRoot.getElementById("builder_max_tokens").value;
+      get maxTokens() {
+         return this._shadowRoot.getElementById("builder_maxTokens").value;
       }
-
    }
-   customElements.define("com-rohitchouhan-sap-chatgptwidget-builder",
-      ChatGptWidgetBuilderPanel
-   );
+
+   // Match tag name to JSON configuration
+   customElements.define("com-rushi-sap-chatgptwidget-builder", ChatGptWidgetBuilderPanel);
 })();
