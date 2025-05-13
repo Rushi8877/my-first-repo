@@ -7,19 +7,19 @@
     "vendor": "Rushi",
     "eula": "",
     "license": "MIT",
-    "icon": "icon (1).png",
+    "icon": "raw.githubusercontent.com/Rushi8877/my-first-repo/refs/heads/featured/lesson/icon (1).png",
     "webcomponents": [
         {
             "kind": "main",
             "tag": "com-rushi-sap-chatgptwidget",
-            "url": "ChatGptWidget.js",
+            "url": "raw.githubusercontent.com/Rushi8877/my-first-repo/refs/heads/featured/lesson/ChatGptWidget.js",
             "integrity": "",
             "ignoreIntegrity": true
         },
         {
             "kind": "builder",
             "tag": "com-rushi-sap-chatgptwidget-builder",
-            "url": "ChatGptWidget_Builder.js",
+            "url": "raw.githubusercontent.com/Rushi8877/my-first-repo/refs/heads/featured/lesson/ChatGptWidget_Builder.js",
             "integrity": "",
             "ignoreIntegrity": true
         }
@@ -28,12 +28,12 @@
         "apiKey": {
             "description": "API Key for ChatGPT",
             "type": "string",
-            "default": "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"
+            "default": "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"
         },
         "model": {
             "description": "OpenAI model to use",
             "type": "string",
-            "default": "gpt-4"
+            "default": "gpt-3.5-turbo"
         },
         "max_tokens": {
             "description": "Maximum Token Length for Response",
