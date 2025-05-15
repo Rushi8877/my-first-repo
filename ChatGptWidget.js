@@ -1,83 +1,128 @@
-{
-    "id": "com.rushi.sap.chatgptwidget",
-    "version": "1.0.3",
-    "name": "ChatGPT Widget",
-    "description": "ChatGPT Custom Widget for SAP Analytics Cloud, making applications more useful and effective.",
-    "newInstancePrefix": "ChatGptWidget",
-    "vendor": "Rushi",
-    "eula": "",
-    "license": "MIT",
-    "icon": "raw.githubusercontent.com/Rushi8877/my-first-repo/refs/heads/featured/lesson/icon (1).png",
-    "webcomponents": [
-        {
-            "kind": "main",
-            "tag": "com-rushi-sap-chatgptwidget",
-            "url": "raw.githubusercontent.com/Rushi8877/my-first-repo/refs/heads/featured/lesson/ChatGptWidget.js",
-            "integrity": "",
-            "ignoreIntegrity": true
-        },
-        {
-            "kind": "builder",
-            "tag": "com-rushi-sap-chatgptwidget-builder",
-            "url": "raw.githubusercontent.com/Rushi8877/my-first-repo/refs/heads/featured/lesson/ChatGptWidget_Builder.js",
-            "integrity": "",
-            "ignoreIntegrity": true
-        }
-    ],
-    "properties": {
-        "apiKey": {
-            "description": "API Key for ChatGPT",
-            "type": "string",
-            "default": "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"
-        },
-        "model": {
-            "description": "OpenAI model to use",
-            "type": "string",
-            "default": "gpt-3.5-turbo"
-        },
-        "max_tokens": {
-            "description": "Maximum Token Length for Response",
-            "type": "integer",
-            "default": 1024
-        }
-    },
-    "methods": {
-        "setApiKey": {
-            "description": "Set API Key for ChatGPT",
-            "parameters": [
-                {
-                    "name": "apiKey",
-                    "type": "string",
-                    "description": "API Key for ChatGPT"
-                }
-            ],
-            "body": "this.apiKey = apiKey;"
-        },
-        "getApiKey": {
-            "returnType": "string",
-            "description": "Return API Key for ChatGPT",
-            "body": "return this.apiKey;"
-        },
-        "setMax_tokens": {
-            "description": "Set Maximum Token Length",
-            "parameters": [
-                {
-                    "name": "max_tokens",
-                    "type": "integer",
-                    "description": "Maximum Token Length"
-                }
-            ],
-            "body": "this.max_tokens = max_tokens;"
-        },
-        "getMax_tokens": {
-            "returnType": "integer",
-            "description": "Return Maximum Token Length",
-            "body": "return this.max_tokens;"
-        }
-    },
-    "events": {
-        "onClick": {
-            "description": "User Clicked."
-        }
+(function () {
+  let template = document.createElement("template");
+  template.innerHTML = `
+      <style>
+        :host {}
+  
+  /* Style for the container */
+  div {
+    margin: 50px auto;
+    max-width: 600px;
+  }
+  
+  /* Style for the input container */
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the input field */
+  #prompt-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 70%;
+  }
+  
+  /* Style for the button */
+  #generate-button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #3cb6a9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 25%;
+  }
+  
+  /* Style for the generated text area */
+  #generated-text {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  width:96%;
+  }
+      </style>
+     <div>
+  <center>
+  <img src="https://1000logos.net/wp-content/uploads/2023/02/ChatGPT-Emblem.png" width="200"/>
+  <h1>ChatGPT</h1></center>
+    <div class="input-container">
+      <input type="text" id="prompt-input" placeholder="Enter a prompt">
+      <button id="generate-button">Generate Text</button>
+    </div>
+    <textarea id="generated-text" rows="10" cols="50" readonly></ textarea>
+  </div>
+    `;
+  class Widget extends HTMLElement {
+    constructor() {
+      super();
+      let shadowRoot = this.attachShadow({
+        mode: "open"
+      });
+      shadowRoot.appendChild(template.content.cloneNode(true));
+      this._props = {};
     }
-}
+    async connectedCallback() {
+      this.initMain();
+    }
+    async initMain() {
+      const generatedText = this.shadowRoot.getElementById("generated-text");
+      generatedText.value = "";
+      const {
+        apiKey
+      } = this._props || "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";
+      const {
+        max_tokens
+      } = this._props || 1024;
+      const generateButton = this.shadowRoot.getElementById("generate-button");
+      generateButton.addEventListener("click", async () => {
+        const promptInput = this.shadowRoot.getElementById("prompt-input");
+        const generatedText = this.shadowRoot.getElementById("generated-text");
+        generatedText.value = "Finding result...";
+        const prompt = promptInput.value;
+        const response = await fetch("https://api.openai.com/v1/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + apiKey
+          },
+          body: JSON.stringify({
+            "model": "text-davinci-002",
+            "prompt": prompt,
+            "max_tokens": parseInt(max_tokens),
+            "n": 1,
+            "temperature": 0.5
+          })
+        });
+
+        if (response.status === 200) {
+          const {
+            choices
+          } = await response.json();
+          const generatedTextValue = choices[0].text;
+          generatedText.value = generatedTextValue.replace(/^\n+/, '');
+        } else {
+          const error = await response.json();
+          alert("OpenAI Response: " + error.error.message);
+          generatedText.value = "";
+        }
+      });
+    }
+    onCustomWidgetBeforeUpdate(changedProperties) {
+      this._props = {
+        ...this._props,
+        ...changedProperties
+      };
+    }
+    onCustomWidgetAfterUpdate(changedProperties) {
+      this.initMain();
+    }
+  }
+  customElements.define("com-rohitchouhan-sap-chatgptwidget", Widget);
+})();
