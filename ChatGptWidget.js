@@ -93,7 +93,7 @@
             "Authorization": "Bearer " + apiKey
           },
           body: JSON.stringify({
-            "model": "text-davinci-002",
+            "model": "GPT-3.5 Turbo",
             "prompt": prompt,
             "max_tokens": parseInt(max_tokens),
             "n": 1,
